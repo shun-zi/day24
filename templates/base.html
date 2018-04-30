@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}{% endblock %}
+    {% block css %}{% endblock %}
+</head>
+<body style="margin: 0; width: 1450px; height: 800px; background-color: white">
+{% block section1 %}
+    <div class="nav">
+        <div class="leftsidebar">
+            <span>顺子的技术论坛</span>
+        </div>
+        <div class="leftsidebar">
+            <a href="#">全部</a>
+        </div>
+        <div class="leftsidebar">
+            <a href="#">Python</a>
+        </div>
+        <div class="leftsidebar">
+            <a href="#">Golang</a>
+        </div>
+
+        {# 若session不存在的话，便显示登录和注册功能，不然就显示用户名#}
+        {% if username is None%}
+            <div class="rightsiderbar">
+                <a href="/login/">登录</a>
+            </div>
+            <div class="rightsiderbar">
+                <a href="register">注册</a>
+            </div>
+        {% else %}
+            <div class="rightsiderbar">
+                <div class="dropdown">
+                  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {% block dLabel %}
+                        <img src="../../statics/img/4.jpg">
+                      {% endblock %}
+                      <span>{{ username }}</span>
+                      <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dLabel">
+                      <li>编辑个人信息</li>
+                      <li id="log-out">注销</li>
+                  </ul>
+                </div>
+            </div>
+        {% endif %}
+        <div style="clear: both;"></div>
+    </div>
+{% endblock %}
+
+{% block section2 %}
+
+{% endblock %}
+{% block section3 %}
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{#{% block js-files %}{% endblock %}#}
+{#<script>#}
+{#    (function ($) {#}
+{#        {% block js-base %}#}
+{#            function changeBC(ths) {#}
+{#                //改变一个标签的背景色并让其兄弟标签统一换成别的背景色.#}
+{#                $(ths).css("background-color", "rgb(239, 239, 239)");#}
+{#                $(ths).siblings().css("background-color", "white");#}
+{#            };#}
+{##}
+{#            $('.dropdown').on('shown.bs.dropdown', function () {#}
+{#                $(".nav .rightsiderbar").css("background-color", "rgb(239, 239, 239)");#}
+{#                $(".nav .rightsiderbar .dropdown #dLabel").css("background-color", "rgb(239, 239, 239)");#}
+{#            });#}
+{#            $('.dropdown').on('hidden.bs.dropdown', function () {#}
+{#                $(".nav .rightsiderbar").css("background-color", "white");#}
+{#                $(".nav .rightsiderbar .dropdown #dLabel").css("background-color", "white");#}
+{#            });#}
+{##}
+{#            $(".dropdown .dropdown-menu li").hover(function () {#}
+{#                changeBC(this);#}
+{#            });#}
+{##}
+{#            $(".dropdown .dropdown-menu #log-out").click(function (event) {#}
+{#                $.ajax({#}
+{#                    url: "/home/machine/",#}
+{#                    type: "POST",#}
+{#                    data: {'operation': 'logout'},#}
+{##}
+{#                    success: function () {#}
+{#                        location.reload()#}
+{#                    }#}
+{##}
+{#                })#}
+{#            });#}
+{#    {% endblock %}#}
+{#     {% block js-self %}{% endblock %}#}
+{#    })(jQuery)#}
+{#</script>#}
+</body>
+</html>

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>ShunZiBlog</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/statics/css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="/statics/css/bootstrap.css" />
+{#    <link rel="stylesheet" href="/statics/css/nav.css">#}
+    <style>
+        {#section1#}
+        .nav{
+            background-color: #e7e7e7;
+            width: 100%;
+            height: 51px;
+            position: relative;
+            padding: 0 50px;
+        }
+        .nav .leftsidebar{
+            float: left;
+            margin-left: 15px;
+        }
+        .nav .leftsidebar span{
+            display: inline;
+            color: #777;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 14px;
+            line-height: 51px;
+        }
+        .nav .leftsidebar a{
+            text-decoration: none;
+            color: #777;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 14px;
+            line-height: 51px;
+        }
+        .nav .rightsiderbar{
+            float: right;
+            padding: 14px;
+            margin-right: 40px;
+        }
+
+        .nav .rightsiderbar a{
+            text-decoration: none;
+            color: #777;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 14px;
+        }
+
+        .nav .rightsiderbar .dropdown #dLabel{
+            border: 0;
+            background-color: white;
+        }
+
+        .nav .rightsiderbar img{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        .nav .rightsiderbar span{
+            font-weight: 500;
+        }
+
+        .nav .rightsiderbar .dropdown .dropdown-menu{
+            right: -15px;
+            left: auto;
+            border-radius: 0;
+            top: 35px;
+        }
+
+        .nav .rightsiderbar .dropdown .dropdown-menu li{
+            padding: 10px;
+            cursor: pointer;
+        }
+        .nav .rightsiderbar .dropdown .dropdown-menu #log-out a{
+            text-decoration: none;
+            color: black;
+            background-image: none;
+        }
+    </style>
+{% endblock %}
+
+{% block js %}
+    <script src="/statics/js/jquery-1.12.4.js"></script>
+    <script src="/statics/js/bootstrap.js"></script>
+    <script src="/statics/js/jquery.cookie.js"></script>
+    <script src="/statics/js/log_out.js"></script>
+    <script>
+        (function ($) {
+            $(".nav a").mouseenter(function () {
+                $(this).css('color', '#333');
+            });
+            $(".nav  a").mouseleave(function () {
+                $(this).css('color', '#777');
+            });
+        })(jQuery)
+    </script>
+{% endblock %}

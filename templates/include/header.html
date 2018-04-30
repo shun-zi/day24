@@ -1,0 +1,32 @@
+<div class="nav">
+    <div class="leftsidebar">
+        <a href="/home/machine/host/">顺子的技术论坛</a>
+    </div>
+    <div class="leftsidebar">
+        <a href="/home/machine/app/">全部</a>
+    </div>
+    <div class="leftsidebar">
+        <a href="#">Python</a>
+    </div>
+    <div class="centersidebar">
+        {% block centersidebar %}
+            <img src="../../statics/img/1.jpg">
+            {% endblock %}
+    </div>
+    <div class="rightsiderbar">
+        <div class="dropdown">
+          <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% block dLabel %}
+                <img src="../../statics/img/4.png">
+              {% endblock %}
+              <span>{{ username }}</span>
+              <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dLabel">
+              <li>编辑个人信息</li>
+              <li id="log-out">注销</li>
+          </ul>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>

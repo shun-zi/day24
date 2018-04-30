@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <style>
+        .guide{
+            position: fixed;
+            left:44%;
+            top:5%;
+        }
+
+        .guide img{
+            width: 100px;
+            height: 100px;
+            margin-left: 48px;
+        }
+
+        .fill-in-box{
+            position: fixed;
+            top: 25%;
+            left: 36%;
+            background-color: white;
+            width: 480px;
+            height: 400px;
+            padding: 25px;
+            box-shadow: 0 4px 9px -3px rgba(102,136,153,.15);
+        }
+
+        .fill-in-box form .field{
+            margin-top: 15px;
+        }
+
+        .fill-in-box form .field label{
+            font-size: 20px;
+            color: #767676;
+            line-height: 1.42857143;
+        }
+
+        .fill-in-box form .field input{
+            width: 450px;
+            height: 10px;
+            padding: 12px;
+            border: 1px solid #e8e8e8;
+        }
+
+        .fill-in-box form .submit input{
+            background-color: #2196f3;
+            width: 475px;
+            height: 35px;
+            color: white;
+            margin-top: 26px;
+            font-size: 19px;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock %}
+
+{% block section1 %}
+    <!-- 引导信息 -->
+    <div class="guide">
+        <h1>Login your account</h1>
+    </div>
+{% endblock %}
+
+{% block section2 %}
+    <div class="fill-in-box">
+        <form action="/login/" method="post">
+            {% csrf_token %}
+            <div class="field">
+                <label for="username">username</label>
+                {{ form.username }}
+            </div>
+            <div class="field">
+                <label for="password">password</label>
+                {{ form.password }}
+            </div>
+           <div class="field">
+                <label for="code" style="display: block">imgae code</label>
+                {{ form.verification_code }}
+                <img src="/verification-code.html" style="margin-left: 20px">
+            </div>
+            <div class="submit">
+                <input type="button" value="Login">
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/statics/js/jquery-1.12.4.js"></script>
+    <script>
+        (function ($) {
+            //利用ajax提交表单数据
+            $(".fill-in-box form .submit input").click(function () {
+                $.ajax({
+                    url: "/login/",
+                    method: "POST",
+                    data: $(".fill-in-box form").serialize(),
+                    success:function (data) {
+                        var data = JSON.parse(data);
+                        if(data["code"])
+                        {
+                            if(data["status"])
+                            {
+                                //表示用户登录成功
+                                window.location.href = '/';
+                            }
+                            else
+                            {
+                                //如果用户输入栏后面已经存在错误信息，则先清除错误信息。
+                                $(".fill-in-box form #username").parent().siblings("span").empty();
+
+                                //添加错误标签
+                                var add_label = document.createElement("span");
+                                $(add_label).text("用户名或者密码错误");
+                                $(add_label).css("color", "red");
+                                $(".fill-in-box form #username").parent().before(add_label);
+
+                            }
+                        }
+                        else
+                        {
+                            //如果用户输入栏后面已经存在错误信息，则先清除错误信息。
+                            $(".fill-in-box form #code").parent().next('span').empty();
+
+                            //添加错误标签
+                            var add_label = document.createElement("span");
+                            $(add_label).text("验证码错误");
+                            $(add_label).css("color", "red");
+                            $(".fill-in-box form #code").parent().after(add_label);
+                        }
+                    }
+                })
+            });
+
+            //当点击图片时，刷新验证码。
+            $(".fill-in-box form #code + img").click(function () {
+                var src = $(this).attr("src");
+                src = src + "?";
+                $(this).attr("src", src);
+            })
+        })(jQuery)
+    </script>
+{% endblock %}

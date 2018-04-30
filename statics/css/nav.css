@@ -1,0 +1,76 @@
+<!-- section1 -->
+        .nav{
+            background-color: white;
+            width: 1500px;
+            height: 51px;
+            position: relative;
+            padding: 0 100px;
+        }
+        .nav .leftsidebar{
+            float: left;
+            margin-left: 15px;
+        }
+        .nav .leftsidebar span{
+            display: inline;
+            color: black;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 14px;
+            line-height: 51px;
+        }
+        .nav .leftsidebar a{
+            text-decoration: none;
+            color: black;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 14px;
+            line-height: 51px;
+        }
+        .nav .rightsiderbar{
+            float: right;
+            padding: 14px;
+            margin-right: 40px;
+        }
+
+        .nav .rightsidebar a{
+            text-decoration: none;
+            color: black;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 14px;
+            line-height: 51px;
+        }
+
+        .nav .rightsiderbar .dropdown #dLabel{
+            border: 0;
+            background-color: white;
+        }
+
+        .nav .rightsiderbar img{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        .nav .rightsiderbar span{
+            font-weight: 500;
+        }
+
+        .nav .rightsiderbar .dropdown .dropdown-menu{
+            right: -15px;
+            left: auto;
+            border-radius: 0;
+            top: 35px;
+        }
+
+        .nav .rightsiderbar .dropdown .dropdown-menu li{
+            padding: 10px;
+            cursor: pointer;
+        }
+        .nav .rightsiderbar .dropdown .dropdown-menu #log-out a{
+            text-decoration: none;
+            color: black;
+            background-image: none;
+        }
